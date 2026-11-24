@@ -27,7 +27,7 @@ def simulate_draw(draw, overall, hard, n_simulations: int = 10000,
     size = 1 << math.ceil(math.log2(len(draw)))
     slots = list(draw) + [None] * (size - len(draw))
     n_rounds = int(math.log2(size))
-    round_names = [f"Round of {size // (2 ** r)}" for r in range(1, n_rounds + 1)]
+    round_names = [f"Round of {size // (2 ** r)}" for r in range(n_rounds)]
     rng = np.random.default_rng(seed)
     reached = {name: np.zeros(n_rounds + 1, dtype=np.int64) for name in names}
 
