@@ -5,6 +5,8 @@ REQUIRED_COLUMNS = {"tourney_date", "winner_name", "loser_name", "surface"}
 
 def load_matches(data_dir: str | Path, tour: str = "atp") -> pd.DataFrame:
     """Load annual CSVs; never invent missing match data."""
+    if tour not in {"atp", "wta"}:
+        raise ValueError("tour must be atp or wta")
     paths = sorted(Path(data_dir).glob(f"{tour}_matches_*.csv"))
     if not paths:
         raise FileNotFoundError(f"No {tour.upper()} match CSV files found in {data_dir}. See README for sources.")
